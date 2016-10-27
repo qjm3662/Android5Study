@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.qjm3662.android5study.MainActivity">
+
+    <Button
+        android:id="@+id/btn_send"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="send" />
+    <Button
+        android:id="@+id/btn_Gallery"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="GalleryDemo" />
+
+    <Button
+        android:id="@+id/btn_tab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TabDemo" />
+
+    <Button
+        android:id="@+id/btn_menu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="MenuDemo" />
+    <Button
+        android:id="@+id/btn_bitmap"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="BitmapDemo" />
+
+    <Button
+        android:id="@+id/btn_notification"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="NotificationDemo" />
+    <Button
+        android:id="@+id/btn_wifiDemo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="WifiDemo" />
+    <Button
+        android:id="@+id/btn_socket"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Socket" />
+</LinearLayout>
