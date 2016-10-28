@@ -1,47 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/scrollView"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    >
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context="com.example.qjm3662.android5study.WifiDirect.WifiDemoActivity">
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <Button
-                android:id="@+id/btn_open"
-                android:text="打开wifi"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-            <Button
-                android:id="@+id/btn_close"
-                android:text="关闭wifi"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-            <Button
-                android:id="@+id/btn_check"
-                android:text="检查wifi"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-            <Button
-                android:id="@+id/btn_search"
-                android:text="扫描wifi"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
 
-        <TextView
-            android:id="@+id/tv_content"
-            android:text="null"
+<LinearLayout android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    tools:context="com.example.qjm3662.android5study.WifiHotPoint.WifiDemoActivity"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_open"
+            android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:text="打开wifi" />
+
+        <Button
+            android:id="@+id/btn_close"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="开启热点" />
+
+        <Button
+            android:id="@+id/btn_check"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="传文件" />
+
+        <Button
+            android:id="@+id/btn_search"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="扫描wifi" />
     </LinearLayout>
-</ScrollView>
+
+    <TextView
+        android:id="@+id/tv_content"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text="null" />
+
+    <ListView
+        android:id="@+id/list"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent" />
+</LinearLayout>
+
 

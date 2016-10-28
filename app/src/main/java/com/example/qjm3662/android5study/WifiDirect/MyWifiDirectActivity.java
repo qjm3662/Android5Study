@@ -25,7 +25,6 @@ import com.example.qjm3662.android5study.FileManager.FileManager;
 import com.example.qjm3662.android5study.FileManager.FileUtils;
 import com.example.qjm3662.android5study.MainActivity;
 import com.example.qjm3662.android5study.R;
-import com.example.qjm3662.android5study.Socket.Server;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.example.qjm3662.android5study.Socket;
+package com.example.qjm3662.android5study.WifiDirect;
 
 /**
  * Created by qjm3662 on 2016/10/26 0026.
@@ -27,9 +27,6 @@ public class Server extends ServerSocket {
     public Server(ServerListener serverListener, boolean IsGroup) throws Exception {
         try {
             try {
-                if(!IsGroup){
-                    server = new ServerSocket(PORT + 1);
-                }
                 server = new ServerSocket(PORT);
                 while (true) {
                     System.out.println("等待客户端接入");

@@ -12,6 +12,7 @@ import android.widget.Button;
 
 import com.example.qjm3662.android5study.Socket.MySocketClient;
 import com.example.qjm3662.android5study.WifiDirect.MyWifiDirectActivity;
+import com.example.qjm3662.android5study.WifiHotPoint.WifiDemoActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -79,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
         btn_wifiDemo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, MyWifiDirectActivity.class));
+                startActivity(new Intent(MainActivity.this, WifiDemoActivity.class));
             }
         });
 

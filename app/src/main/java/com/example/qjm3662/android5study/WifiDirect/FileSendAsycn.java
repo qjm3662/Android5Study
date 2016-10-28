@@ -11,7 +11,7 @@ import java.net.Socket;
 /**
  * Created by qjm3662 on 2016/10/27 0027.
  */
-class FileSendAsycn extends AsyncTask<String, File, String> {
+public class FileSendAsycn extends AsyncTask<String, File, String> {
     private boolean IsGroup;
     private Socket client = null;
 
