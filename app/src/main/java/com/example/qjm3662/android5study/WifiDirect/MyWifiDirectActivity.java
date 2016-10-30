@@ -26,6 +26,7 @@ import com.example.qjm3662.android5study.FileManager.FileUtils;
 import com.example.qjm3662.android5study.MainActivity;
 import com.example.qjm3662.android5study.R;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -53,6 +54,7 @@ public class MyWifiDirectActivity extends AppCompatActivity implements View.OnCl
     private int progress = 0;
     private Thread StartServerThread = null;
     private boolean IsGouper = false;
+    private Server server = null;
 
 
     @Override
@@ -66,7 +68,7 @@ public class MyWifiDirectActivity extends AppCompatActivity implements View.OnCl
     public WifiP2pManager.ConnectionInfoListener getConnectionInfoListener() {
         return connectionInfoListener;
     }
-    public WifiP2pManager.PeerListListener getPeersListener(){
+    public WifiP2pManager.PeerListListener getPeerListListener(){
         return peerListListener;
     }
 
@@ -90,6 +92,8 @@ public class MyWifiDirectActivity extends AppCompatActivity implements View.OnCl
             public void onPeersAvailable(WifiP2pDeviceList peers) {
                 MyWifiDirectActivity.this.peers.clear();
                 MyWifiDirectActivity.this.peers.addAll(peers.getDeviceList());
+                System.out.println("peers size : " + MyWifiDirectActivity.this.peers.size());
+                adapter.setPeers(MyWifiDirectActivity.this.peers);
                 adapter.notifyDataSetChanged();
             }
         };
@@ -123,7 +127,7 @@ public class MyWifiDirectActivity extends AppCompatActivity implements View.OnCl
             @Override
             public void run() {
                 try {
-                    new Server(serverListener, IsGroup);
+                    server = Server.getInstance(serverListener, IsGroup);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -135,7 +139,7 @@ public class MyWifiDirectActivity extends AppCompatActivity implements View.OnCl
     private void init() {
         manager = (WifiP2pManager) getSystemService(Context.WIFI_P2P_SERVICE);
         channel = manager.initialize(this, getMainLooper(), null);
-        receiver = new WifiDirectBroadCastReceiver(manager, channel, MyWifiDirectActivity.this, peerListListener);
+        receiver = new WifiDirectBroadCastReceiver(WifiDirectBroadCastReceiver.FLAG_FROM_WIFIDIRECTDEMO_ACTIVITY, manager, channel, MyWifiDirectActivity.this, peerListListener);
         intentFilter = new IntentFilter();
         intentFilter.addAction(WifiP2pManager.WIFI_P2P_STATE_CHANGED_ACTION);
         intentFilter.addAction(WifiP2pManager.WIFI_P2P_PEERS_CHANGED_ACTION);
@@ -291,12 +295,25 @@ public class MyWifiDirectActivity extends AppCompatActivity implements View.OnCl
         super.onActivityResult(requestCode, resultCode, data);
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if(server != null){
+            try {
+                server.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         WifiP2pConfig config = new WifiP2pConfig();
         config.deviceAddress = peers.get(position).deviceAddress;
         config.wps.setup = WpsInfo.PBC;
+        System.out.println("DeviceAddress : " + config.deviceAddress);
         manager.connect(channel,config, new WifiP2pManager.ActionListener() {
             @Override
             public void onSuccess() {

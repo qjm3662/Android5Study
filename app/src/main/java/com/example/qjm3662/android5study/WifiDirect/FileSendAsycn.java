@@ -14,14 +14,25 @@ import java.net.Socket;
 public class FileSendAsycn extends AsyncTask<String, File, String> {
     private boolean IsGroup;
     private Socket client = null;
+    private FileSendListener listener = null;
 
     public FileSendAsycn(boolean IsGroup) {
         this.IsGroup = IsGroup;
+    }
+    public FileSendAsycn(boolean IsGroup, FileSendListener listener) {
+        this.IsGroup = IsGroup;
+        this.listener = listener;
     }
 
     public FileSendAsycn(boolean IsGroup, Socket client){
         this.IsGroup = IsGroup;
         this.client = client;
+    }
+
+    public interface FileSendListener{
+        void progress(int progress);
+        void success();
+        void fail();
     }
 
     @Override
@@ -50,15 +61,33 @@ public class FileSendAsycn extends AsyncTask<String, File, String> {
                 dos.writeLong(file.length());
                 dos.flush();
 
+                int transLen = 0;
+                Long fileLength = file.length();
                 //传输文件
                 byte[] sendBytes = new byte[1024];
                 int length = 0;
-                while ((length = fis.read(sendBytes, 0, sendBytes.length)) > 0) {
-                    dos.write(sendBytes, 0, length);
-                    dos.flush();
+                if(listener != null){
+                    while ((length = fis.read(sendBytes, 0, sendBytes.length)) > 0) {
+                        dos.write(sendBytes, 0, length);
+                        transLen += length;
+                        listener.progress((int) (transLen*100/fileLength));
+                        dos.flush();
+                    }
+                }else{
+                    while ((length = fis.read(sendBytes, 0, sendBytes.length)) > 0) {
+                        dos.write(sendBytes, 0, length);
+                        dos.flush();
+                    }
+                }
+
+                if(listener != null){
+                    listener.success();
                 }
             } catch (IOException e) {
                 e.printStackTrace();
+                if(listener != null){
+                    listener.fail();
+                }
             } finally {
                 if (fis != null)
                     fis.close();

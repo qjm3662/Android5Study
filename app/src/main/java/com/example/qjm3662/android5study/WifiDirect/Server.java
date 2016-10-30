@@ -23,11 +23,21 @@ public class Server extends ServerSocket {
     public static Socket client;
     private DataInputStream dis;
     private FileOutputStream fos;
+    public static ServerListener serverListener;
 
-    public Server(ServerListener serverListener, boolean IsGroup) throws Exception {
+    public static Server instance;
+
+    public static void setServerListener(ServerListener ss) {
+        serverListener = ss;
+    }
+
+
+    public Server(ServerListener ss, boolean IsGroup) throws Exception {
+        serverListener = ss;
         try {
             try {
                 server = new ServerSocket(PORT);
+                instance = this;
                 while (true) {
                     System.out.println("等待客户端接入");
                     client = server.accept();
@@ -68,12 +78,29 @@ public class Server extends ServerSocket {
                 if (fos != null)
                     fos.close();
                 server.close();
+                instance = null;
             }
             System.out.println("Server Over !!!!----------------------------------------------");
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
+    public static Server getInstance(ServerListener serverListener, boolean IsGroup){
+        if(instance != null){
+            setServerListener(serverListener);
+            return instance;
+        }else{
+            try {
+                instance = new Server(serverListener, IsGroup);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return instance;
+    }
+
+
 
 
     public static Socket getCurrentClient(){

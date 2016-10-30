@@ -22,6 +22,10 @@ public class PeersListAdapter extends BaseAdapter{
     private LayoutInflater inflater;
     private ViewHolder viewHolder;
 
+    public void setPeers(List<WifiP2pDevice> peers) {
+        this.peers = peers;
+    }
+
     public PeersListAdapter(Context context, List<WifiP2pDevice> peers) {
         this.peers = peers;
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -34,6 +38,7 @@ public class PeersListAdapter extends BaseAdapter{
 
     @Override
     public int getCount() {
+        System.out.println("getSize");
         return peers.size();
     }
 

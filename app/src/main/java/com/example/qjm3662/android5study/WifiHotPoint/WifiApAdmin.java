@@ -22,8 +22,6 @@ import static android.text.format.Formatter.formatIpAddress;
 public class WifiApAdmin {
     public static final String TAG = "WifiApAdmin";
 
-
-
     private WifiManager mWifiManager = null;
 
     private Context mContext = null;
@@ -77,9 +75,9 @@ public class WifiApAdmin {
                     WifiConfiguration.class, boolean.class);
             WifiConfiguration netConfig = new WifiConfiguration();
 
-            netConfig.SSID = getWIFILocalIpAdress(mContext);
-            netConfig.BSSID = "qjm3662";
-            netConfig.networkId = 4538;
+            netConfig.SSID = "qjm253";
+//            netConfig.BSSID = "qjm3662";
+//            netConfig.networkId = 4538;
             System.out.println("My ip : " + getWIFILocalIpAdress(mContext));
             netConfig.preSharedKey = mPasswd;
             netConfig.allowedAuthAlgorithms

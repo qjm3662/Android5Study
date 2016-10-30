@@ -12,7 +12,7 @@ import android.widget.Button;
 
 import com.example.qjm3662.android5study.Socket.MySocketClient;
 import com.example.qjm3662.android5study.WifiDirect.MyWifiDirectActivity;
-import com.example.qjm3662.android5study.WifiHotPoint.WifiDemoActivity;
+import com.example.qjm3662.android5study.WifiDirect.TransMain;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     private Button btn_bitmap;
     private Button btn_wifiDemo;
     private Button btn_socket;
+    private Button btn_TransMain;
 
     public static final int FILE_SELECT_CODE = 1;
     public static final String FILE_SELECT = "file select";
@@ -80,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
         btn_wifiDemo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, WifiDemoActivity.class));
+                startActivity(new Intent(MainActivity.this, MyWifiDirectActivity.class));
             }
         });
 
@@ -92,6 +93,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+        btn_TransMain = (Button) findViewById(R.id.btn_TransMain);
+        btn_TransMain.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, TransMain.class));
+            }
+        });
         Button btn_notification = (Button) findViewById(R.id.btn_notification);
         btn_notification.setOnClickListener(new View.OnClickListener() {
             @Override

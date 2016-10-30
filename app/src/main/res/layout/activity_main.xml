@@ -50,4 +50,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Socket" />
+    <Button
+        android:id="@+id/btn_TransMain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TransMain" />
 </LinearLayout>

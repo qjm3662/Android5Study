@@ -15,7 +15,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,7 +27,6 @@ import com.example.qjm3662.android5study.WifiDirect.Server;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.text.Format;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -75,7 +73,7 @@ public class WifiDemoActivity extends AppCompatActivity implements View.OnClickL
             @Override
             public void run() {
                 try {
-                    server = new Server(new Server.ServerListener() {
+                    server = Server.getInstance(new Server.ServerListener() {
                         @Override
                         public void FileInfoCallback(String fileName, String path) {
 
